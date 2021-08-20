@@ -1,142 +1,147 @@
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap");
 
-* {
-	box-sizing: border-box;
-}
+  * {
+    box-sizing: border-box;
+  }
 
-body {
-	height: 100vh;
-	font-family: "Poppins", sans-serif;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	margin: 0;
-	overflow: hidden;
-}
+  body {
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0;
+    overflow: hidden;
+  }
 
-h1 {
-	font-weight: normal;
-	font-size: 60px;
-	margin: -150px 0 40px;
-}
+  h1 {
+    font-weight: normal;
+    font-size: 60px;
+    margin: -150px 0 40px;
+  }
 
-.countdown {
-	display: flex;
-	transform: scale(2);
-}
+  .countdown {
+    display: flex;
+    transform: scale(2);
+  }
 
-.time {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	margin: 15px;
-}
+  .time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+  }
 
-.time h2 {
-	font-weight: bold;
-	font-size: 36px;
-	line-height: 1;
-	margin: 0 0 5px;
-}
+  .time h2 {
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 1;
+    margin: 0 0 5px;
+  }
 
-@media (max-width: 500px) {
-	h1 {
-		font-size: 45px;
-	}
-	.time {
-		margin: 5px;
-	}
-	.time h2 {
-		font-size: 12px;
-	}
-	.time small {
-		font-size: 10px;
-	}
-}
+  @media (max-width: 500px) {
+    h1 {
+      font-size: 45px;
+    }
+    .time {
+      margin: 5px;
+    }
+    .time h2 {
+      font-size: 12px;
+    }
+    .time small {
+      font-size: 10px;
+    }
+  }
 </style>
 <!DOCTYPE html>
 <!-- saved from url=(0041)https://cranky-wright-a053c3.netlify.app/ -->
-<html lang="en" class="js-focus-visible" data-js-focus-visible=""><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- 
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link rel="icon" href="images.png">
+<html lang="en" class="js-focus-visible" data-js-focus-visible="">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
- <meta http-equiv="X-UA-Compatible" content="ie=edge"> 
- <title>Regreso a Clases - Cuenta regresiva</title> 
-</head>
-<body id="cronometro">
- <h1 id="title">Regreso a clases en...</h1>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="images.png" />
 
- <div id="countdown" class="countdown">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Regreso a Clases - Cuenta regresiva</title>
+  </head>
+  <body id="cronometro">
+    <h1 id="title">Regreso a clases en...</h1>
 
-  <div class="time">
-   <h2 id="days">000</h2>
-   <small>Dias</small>
-  </div>
+    <div id="countdown" class="countdown">
+      <div class="time">
+        <h2 id="days">000</h2>
+        <small>Dias</small>
+      </div>
 
-  <div class="time">
-   <h2 id="hours">00</h2>
-   <small>Horas</small>
-  </div>
+      <div class="time">
+        <h2 id="hours">00</h2>
+        <small>Horas</small>
+      </div>
 
-  <div class="time">
-   <h2 id="minutes">00</h2>
-   <small>Minutos</small>
-  </div>
+      <div class="time">
+        <h2 id="minutes">00</h2>
+        <small>Minutos</small>
+      </div>
 
-  <div class="time">
-   <h2 id="seconds">00</h2>
-   <small>Segundos</small>
-  </div>
+      <div class="time">
+        <h2 id="seconds">00</h2>
+        <small>Segundos</small>
+      </div>
+    </div>
+    <br />
+    <script>
+      const days = document.getElementById("days");
+      const hours = document.getElementById("hours");
+      const minutes = document.getElementById("minutes");
+      const seconds = document.getElementById("seconds");
 
- </div>
-<br>
- <script>
-   const days = document.getElementById('days');
-const hours = document.getElementById('hours');
-const minutes = document.getElementById('minutes');
-const seconds = document.getElementById('seconds');
+      const currentYear = new Date().getFullYear();
 
-const currentYear = new Date().getFullYear();
+      const newSchool = new Date(`September 20 ${currentYear} 00:00:00`);
 
-const newSchool = new Date(`September 06 ${currentYear} 00:00:00`);
+      // Update countdown time
+      function updateCountdown() {
+        const currentTime = new Date();
+        const diff = newSchool - currentTime;
 
-// Update countdown time
-function updateCountdown() {
-  const currentTime = new Date();
-	const diff = newSchool - currentTime;
+        const d = Math.floor(diff / 1000 / 60 / 60 / 24);
+        const h = Math.floor(diff / 1000 / 60 / 60) % 24;
+        const m = Math.floor(diff / 1000 / 60) % 60;
+        const s = Math.floor(diff / 1000) % 60;
 
-	const d = Math.floor(diff / 1000 / 60 / 60 / 24);
-	const h = Math.floor(diff / 1000 / 60 / 60) % 24;
-	const m = Math.floor(diff / 1000 / 60) % 60;
-	const s = Math.floor(diff / 1000) % 60;
+        days.innerHTML = d;
+        hours.innerHTML = h < 10 ? "0" + h : h;
+        minutes.innerHTML = m < 10 ? "0" + m : m;
+        seconds.innerHTML = s < 10 ? "0" + s : s;
+        if (d == 00 && h == 00 && m == 00 && s == 00) {
+          var myobj = document.getElementById("countdown");
+          myobj.remove();
+          document.getElementById("title").innerHTML =
+            "Regreso a clases en progreso...";
+          document.getElementById("cronometro").style =
+            "color: white;background: green;";
+        } else {
+          document.getElementById("cronometro").style =
+            "color: white;background: red;";
+        }
+      }
 
-	days.innerHTML = d;
-	hours.innerHTML = h < 10 ? '0' + h : h;
-	minutes.innerHTML = m < 10 ? '0' + m : m;
-	seconds.innerHTML = s < 10 ? '0' + s : s;
-  if(d == 00 && h == 00 && m == 00 && s == 00){
-    var myobj = document.getElementById("countdown");
-    myobj.remove(); 
-    document.getElementById("title").innerHTML = 'Regreso a clases en progreso...';
-    document.getElementById("cronometro").style="color: white;background: green;"
-  }else{
-    document.getElementById("cronometro").style="color: white;background: red;"
-  }
-}
+      function eliminarB() {
+        document.getElementById("cronometro").style = null;
+      }
 
-function eliminarB(){
-  document.getElementById("cronometro").style= null;
-}
-
-setInterval(updateCountdown, 1000);
-setInterval(eliminarB, 2000);
-
-
- </script>
-
-</body><loom-container id="lo-engage-ext-container"><div></div><loom-shadow classname="resolved"></loom-shadow></loom-container></html>
+      setInterval(updateCountdown, 1000);
+      setInterval(eliminarB, 2000);
+    </script>
+  </body>
+  <loom-container id="lo-engage-ext-container"
+    ><div></div>
+    <loom-shadow classname="resolved"></loom-shadow
+  ></loom-container>
+</html>
