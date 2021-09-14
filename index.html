@@ -103,7 +103,7 @@
 
       const currentYear = new Date().getFullYear();
 
-      const newSchool = new Date(`September 20 ${currentYear} 00:00:00`);
+      const newSchool = new Date(`September 13 ${currentYear} 00:00:00`);
 
       // Update countdown time
       function updateCountdown() {
@@ -119,7 +119,7 @@
         hours.innerHTML = h < 10 ? "0" + h : h;
         minutes.innerHTML = m < 10 ? "0" + m : m;
         seconds.innerHTML = s < 10 ? "0" + s : s;
-        if (d == 00 && h == 00 && m == 00 && s == 00) {
+        if (d <= 00 && h <= 00 && m <= 00 && s <= 00) {
           var myobj = document.getElementById("countdown");
           myobj.remove();
           document.getElementById("title").innerHTML =
@@ -133,11 +133,15 @@
       }
 
       function eliminarB() {
-        document.getElementById("cronometro").style = null;
+      
+          document.getElementById("cronometro").style = null;
+        
       }
 
       setInterval(updateCountdown, 1000);
+      if(new Date() <= newSchool){
       setInterval(eliminarB, 2000);
+    }
     </script>
   </body>
   <loom-container id="lo-engage-ext-container"
